@@ -580,18 +580,18 @@ elif page == "Download":
     st.info("**Download link is now available!** Click the button above to download from Google Drive.")
         
         # Installation instructions
-        st.markdown("### Quick Installation")
-        st.markdown("""
+    st.markdown("### Quick Installation")
+    st.markdown("""
         1. **Click the download link** above to access Google Drive
         2. **Download the ZIP file** to your computer
         3. **Extract** the downloaded ZIP file to your desired location
         4. **Run** `DIVAI.exe` from the extracted folder
         5. **Click "Check Files"** to verify installation
         6. **Start chatting** with your private AI!
-        """)
+    """)
         
-        st.markdown("### Download Instructions")
-        st.markdown("""
+    st.markdown("### Download Instructions")
+    st.markdown("""
         **From Google Drive:**
         1. Click the download link above
         2. On Google Drive, click the **Download** button (arrow pointing down)
@@ -602,7 +602,7 @@ elif page == "Download":
         - **Filename**: DIV-AI-v1.0.zip
         - **Size**: 1.65GB
         - **Contents**: Complete DIV-AI application with AI model
-        """)
+    """)
     
     col1, col2 = st.columns([2, 1])
     
