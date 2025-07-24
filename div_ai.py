@@ -547,6 +547,7 @@ elif page == "Technical Specs":
 
 # Download Page - Modified to include email collection
 # Download Page - Fixed version
+# Download Page - Updated with your Google Drive link
 elif page == "Download":
     st.markdown("## Download DIV-AI")
     
@@ -569,7 +570,7 @@ elif page == "Download":
     if 'email_verified' not in st.session_state:
         st.session_state.email_verified = False
     
-    # Email input form (ONLY email collection here)
+    # Email input form
     with st.form("email_form"):
         email = st.text_input("Your Email Address", placeholder="your.email@example.com")
         submit_button = st.form_submit_button("Get Download Link", type="primary", use_container_width=True)
@@ -587,60 +588,121 @@ elif page == "Download":
                 else:
                     st.error("Failed to process your request. Please try again.")
     
-    # Download buttons OUTSIDE the form (only show after email verification)
+    # Download link OUTSIDE the form (only show after email verification)
     if st.session_state.email_verified:
         st.markdown("### Your Download is Ready!")
         
-        col1, col2 = st.columns(2)
+        # Your Google Drive download link
+        st.markdown("""
+        <div class="feature-card" style="text-align: center;">
+            <h4>DIV-AI Complete Package</h4>
+            <p><strong>Size:</strong> 1.65GB</p>
+            <p><strong>Includes:</strong> Full application + AI model + All dependencies</p>
+            <br>
+            <a href="https://drive.google.com/file/d/1hGyhFBbwJBXQbUBTD8l-dWjQYqThsXvG/view?usp=sharing" 
+               target="_blank" 
+               style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 1rem 2rem; 
+                      border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 1.1em;
+                      display: inline-block; margin: 1rem 0; transition: transform 0.3s;">
+                Download DIV-AI from Google Drive
+            </a>
+        </div>
+        """, unsafe_allow_html=True)
         
-        with col1:
-            st.markdown("""
-            <div class="feature-card">
-                <h4>Complete Package (Recommended)</h4>
-                <p><strong>Size:</strong> 1.65GB</p>
-                <p><strong>Includes:</strong> Full application + AI model</p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # ✅ NOW OUTSIDE THE FORM - THIS WORKS
-            st.download_button(
-                label="Download DIV-AI (1.65GB)",
-                data="This would be your actual file data or use st.link_button for external links",
-                file_name="DIV-AI-v1.0.zip",
-                mime="application/zip",
-                use_container_width=True
-            )
-        
-        with col2:
-            st.markdown("""
-            <div class="feature-card">
-                <h4>Source Code Only</h4>
-                <p><strong>Size:</strong> 50MB</p>
-                <p><strong>Includes:</strong> Python code + docs</p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # ✅ ALSO OUTSIDE THE FORM
-            st.download_button(
-                label="Download Source Code",
-                data="This would be your source code archive",
-                file_name="DIV-AI-Source.zip",
-                mime="application/zip",
-                use_container_width=True
-            )
-        
-        st.info("**Download link has been sent to your email!** Check your inbox for the secure download instructions.")
+        st.info("**Download link is now available!** Click the button above to download from Google Drive.")
         
         # Installation instructions
         st.markdown("### Quick Installation")
         st.markdown("""
-        1. **Extract** the downloaded ZIP file
-        2. **Run** `DIVAI.exe` from the extracted folder
-        3. **Click "Check Files"** to verify installation
-        4. **Start chatting** with your private AI!
+        1. **Click the download link** above to access Google Drive
+        2. **Download the ZIP file** to your computer
+        3. **Extract** the downloaded ZIP file to your desired location
+        4. **Run** `DIVAI.exe` from the extracted folder
+        5. **Click "Check Files"** to verify installation
+        6. **Start chatting** with your private AI!
+        """)
+        
+        st.markdown("### Download Instructions")
+        st.markdown("""
+        **From Google Drive:**
+        1. Click the download link above
+        2. On Google Drive, click the **Download** button (arrow pointing down)
+        3. The file will download to your Downloads folder
+        4. Extract and run as instructed above
+        
+        **File Details:**
+        - **Filename**: DIV-AI-v1.0.zip
+        - **Size**: 1.65GB
+        - **Contents**: Complete DIV-AI application with AI model
         """)
     
-    # Rest of your download page code continues...
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        st.markdown("### What You Get After Download")
+        
+        st.markdown("""
+        <div class="feature-card">
+            <h4>Complete AI Assistant</h4>
+            <p><strong>Full offline AI capabilities</strong></p>
+            <p>Professional quality responses without internet dependency</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>Privacy Guaranteed</h4>
+            <p><strong>Zero data collection</strong></p>
+            <p>All processing happens locally on your machine</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>Lifetime Value</h4>
+            <p><strong>No subscription fees</strong></p>
+            <p>No usage limits, free updates included</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("### Download Benefits")
+        st.markdown("""
+        **Complete AI Assistant**
+        - Full offline AI capabilities
+        - No internet dependency
+        - Professional quality responses
+        
+        **Privacy Guaranteed**
+        - Zero data collection
+        - No cloud processing
+        - Complete local control
+        
+        **Lifetime Value**
+        - No subscription fees
+        - No usage limits
+        - Free updates included
+        
+        **Professional Support**
+        - Complete documentation
+        - GitHub issue support
+        - Active community
+        """)
+        
+        st.markdown("### Secure Download")
+        st.markdown("""
+        **Your Privacy:**
+        - Email stored securely (hashed)
+        - No spam or marketing emails
+        - Used only for download verification
+        - Can be deleted anytime
+        """)
+    
+    st.markdown("---")
+    st.markdown("### Important Notes")
+    st.warning("""
+    **System Compatibility**: Currently Windows 10/11 (64-bit) only. Linux/macOS versions coming soon!
+    
+    **First Run**: Initial model loading may take 30-60 seconds. Subsequent starts are much faster.
+    
+    **Antivirus**: Some antivirus software may flag the executable as unknown. This is normal for new software.
+    """)
 
 
 # FAQ Page
