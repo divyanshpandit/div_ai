@@ -2,46 +2,18 @@ import streamlit as st
 import base64
 from pathlib import Path
 import sqlite3
-import hashlib
 import re
 from datetime import datetime
 import os
+
 # Try to load environment variables
 try:
     from dotenv import load_dotenv
     load_dotenv()
 except ImportError:
-    st.warning("python-dotenv not installed. Using environment variables directly.")
+    pass
 
-# Add database setup and email functions at the top
-def migrate_database():
-    """Migrate existing database to support both email and email_hash columns"""
-    try:
-        conn = sqlite3.connect('div_ai_emails.db')
-        cursor = conn.cursor()
-        
-        # Check if email column exists
-        cursor.execute("PRAGMA table_info(user_emails)")
-        columns = [column[1] for column in cursor.fetchall()]
-        
-        if 'email' not in columns:
-            # Add email column to existing table
-            cursor.execute('ALTER TABLE user_emails ADD COLUMN email TEXT')
-            
-            # For existing records, mark as legacy since we can't reverse the hash
-            cursor.execute('''
-                UPDATE user_emails 
-                SET email = 'legacy_user_' || id || '@unknown.com' 
-                WHERE email IS NULL
-            ''')
-            
-            conn.commit()
-        
-        conn.close()
-        
-    except Exception as e:
-        st.error(f"Migration error: {e}")
-
+# Simple database functions - no hashing
 def init_database():
     """Initialize SQLite database for email storage"""
     conn = sqlite3.connect('div_ai_emails.db')
@@ -50,7 +22,6 @@ def init_database():
         CREATE TABLE IF NOT EXISTS user_emails (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT UNIQUE NOT NULL,
-            email_hash TEXT NOT NULL,
             timestamp TEXT NOT NULL,
             download_count INTEGER DEFAULT 1
         )
@@ -58,25 +29,16 @@ def init_database():
     conn.commit()
     conn.close()
 
-# Call migration before initialization
-migrate_database()
-init_database()
-
-def hash_email(email):
-    """Hash email for secure storage"""
-    return hashlib.sha256(email.encode()).hexdigest()
-
 def validate_email(email):
     """Validate email format"""
     pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     return re.match(pattern, email) is not None
 
 def save_email(email):
-    """Save email and hash to database"""
+    """Save email to database"""
     try:
         conn = sqlite3.connect('div_ai_emails.db')
         cursor = conn.cursor()
-        email_hash = hash_email(email.lower())
         timestamp = datetime.now().isoformat()
         
         # Check if email already exists
@@ -88,7 +50,7 @@ def save_email(email):
             cursor.execute('UPDATE user_emails SET download_count = download_count + 1 WHERE email = ?', (email.lower(),))
         else:
             # Insert new email
-            cursor.execute('INSERT INTO user_emails (email, email_hash, timestamp) VALUES (?, ?, ?)', (email.lower(), email_hash, timestamp))
+            cursor.execute('INSERT INTO user_emails (email, timestamp) VALUES (?, ?)', (email.lower(), timestamp))
         
         conn.commit()
         conn.close()
@@ -726,7 +688,7 @@ elif page == "Download":
         st.markdown("### Secure Download")
         st.markdown("""
         **Your Privacy:**
-        - Email stored securely (hashed)
+        - Email stored in plain text
         - No spam or marketing emails
         - Used only for download verification
         - Can be deleted anytime
@@ -1022,41 +984,6 @@ elif page == "Admin Panel":
                     file_name=f"div_ai_emails_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
                     mime="application/json"
                 )
-            
-            # Bulk email verification
-            st.markdown("### 📧 Bulk Email Verification")
-            st.info("Upload a list of emails to check which ones are in your database")
-            
-            bulk_emails = st.text_area(
-                "Paste emails (one per line):",
-                placeholder="user1@example.com\nuser2@example.com\nuser3@example.com"
-            )
-            
-            if bulk_emails and st.button("Check Bulk Emails"):
-                email_list = [email.strip().lower() for email in bulk_emails.split('\n') if email.strip()]
-                
-                results = []
-                for email in email_list:
-                    # Check database
-                    conn = sqlite3.connect('div_ai_emails.db')
-                    cursor = conn.cursor()
-                    cursor.execute('SELECT timestamp, download_count FROM user_emails WHERE email = ?', (email,))
-                    result = cursor.fetchone()
-                    conn.close()
-                    
-                    results.append({
-                        'Email': email,
-                        'Status': 'Found' if result else 'Not Found',
-                        'Submission Date': result[0] if result else 'N/A',
-                        'Downloads': result[1] if result else 'N/A'
-                    })
-                
-                results_df = pd.DataFrame(results)
-                st.dataframe(results_df, use_container_width=True)
-                
-                # Summary
-                found_count = len([r for r in results if r['Status'] == 'Found'])
-                st.write(f"**Summary:** {found_count}/{len(results)} emails found in database")
             
             # Email domain analysis
             st.markdown("### 📊 Email Domain Analysis")
