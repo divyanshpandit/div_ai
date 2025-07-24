@@ -60,7 +60,7 @@ def save_email(email):
 def create_download_link():
     """Create secure download link"""
     # This would be your actual download file or link
-    download_url = "https://github.com/yourusername/div-ai/releases/download/v1.0/DIV-AI-v1.0.zip"
+    download_url = "https://drive.google.com/file/d/1hGyhFBbwJBXQbUBTD8l-dWjQYqThsXvG/view?usp=sharing"
     return download_url
 
 # Initialize database
