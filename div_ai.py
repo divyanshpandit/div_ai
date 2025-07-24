@@ -69,7 +69,7 @@ init_database()
 # Page config
 st.set_page_config(
     page_title="DIV-AI - Your Personal Offline AI Assistant",
-    page_icon="🤖",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -154,22 +154,22 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Sidebar Navigation
-st.sidebar.title("🤖 DIV-AI Navigation")
+st.sidebar.title("DIV-AI Navigation")
 page = st.sidebar.radio("Go to:", [
-    "🏠 Home",
-    "✨ Features", 
-    "📊 Comparison",
-    "💻 Screenshots",
-    "⚙️ Technical Specs",
-    "📥 Download",
-    "❓ FAQ",
-    "👨‍💻 About Creator"
+    "Home",
+    "Features", 
+    "Comparison",
+    "Screenshots",
+    "Technical Specs",
+    "Download",
+    "FAQ",
+    "About Creator"
 ])
 
 # Main Header
 st.markdown("""
 <div class="main-header">
-    <h1>🤖 DIV-AI</h1>
+    <h1>DIV-AI</h1>
     <h2>Your Personal Offline AI Assistant</h2>
     <p style="font-size: 1.2em; margin-top: 1rem;">
         Powered by Div_v1_Quant • 100% Private • No Internet Required
@@ -178,11 +178,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Home Page
-if page == "🏠 Home":
+if page == "Home":
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.markdown("## 🔒 Complete Privacy. Unlimited Power.")
+        st.markdown("## Complete Privacy. Unlimited Power.")
         st.markdown("""
         **DIV-AI** is revolutionary offline AI assistant that runs entirely on your local machine. 
         No internet connection required, no data leaves your computer, no subscriptions needed.
@@ -192,28 +192,28 @@ if page == "🏠 Home":
         
         st.markdown("""
         <div class="feature-card">
-            <h4>🔒 100% Private & Secure</h4>
+            <h4>100% Private & Secure</h4>
             <p>All processing happens locally. Your conversations never leave your computer.</p>
         </div>
         
         <div class="feature-card">
-            <h4>⚡ Lightning Fast Responses</h4>
+            <h4>Lightning Fast Responses</h4>
             <p>Instant answers to personal questions, optimized AI responses for complex queries.</p>
         </div>
         
         <div class="feature-card">
-            <h4>💰 No Subscriptions Ever</h4>
+            <h4>No Subscriptions Ever</h4>
             <p>One-time download, lifetime usage. No monthly fees, no usage limits.</p>
         </div>
         
         <div class="feature-card">
-            <h4>🌐 Works Offline Always</h4>
+            <h4>Works Offline Always</h4>
             <p>Perfect for secure environments, remote areas, or when you want guaranteed uptime.</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("### 📊 Quick Stats")
+        st.markdown("### Quick Stats")
         st.markdown("""
         <div class="stat-box">
             <h3>2.7B</h3>
@@ -236,7 +236,7 @@ if page == "🏠 Home":
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("### 🎯 Perfect For:")
+        st.markdown("### Perfect For:")
         st.markdown("""
         - **Privacy-conscious users**
         - **Businesses with sensitive data**
@@ -246,14 +246,14 @@ if page == "🏠 Home":
         """)
 
 # Features Page
-elif page == "✨ Features":
-    st.markdown("## ✨ Powerful Features")
+elif page == "Features":
+    st.markdown("## Powerful Features")
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
-        ### 🎯 Smart AI Capabilities
+        ### Smart AI Capabilities
         - **Programming Assistance**: Code help, debugging, explanations
         - **Creative Writing**: Stories, essays, content creation
         - **Problem Solving**: Complex analysis and solutions
@@ -262,7 +262,7 @@ elif page == "✨ Features":
         """)
         
         st.markdown("""
-        ### 🖥️ User Interface
+        ### User Interface
         - **Clean, Modern GUI**: Intuitive Tkinter-based interface
         - **Quick Question Buttons**: Instant access to common queries
         - **Real-time Monitoring**: CPU and RAM usage display
@@ -272,7 +272,7 @@ elif page == "✨ Features":
     
     with col2:
         st.markdown("""
-        ### ⚙️ Technical Excellence
+        ### Technical Excellence
         - **Optimized Performance**: CPU and memory efficient
         - **Process Management**: Safe operation with timeout protection
         - **Resource Control**: Configurable thread and batch limits
@@ -281,7 +281,7 @@ elif page == "✨ Features":
         """)
         
         st.markdown("""
-        ### 🔧 Customization Options
+        ### Customization Options
         - **Response Length Control**: Adjustable output limits
         - **Performance Tuning**: CPU thread and memory settings
         - **Interface Themes**: Clean, professional appearance
@@ -290,7 +290,7 @@ elif page == "✨ Features":
         """)
     
     st.markdown("---")
-    st.markdown("### 🚀 What Makes DIV-AI Special?")
+    st.markdown("### What Makes DIV-AI Special?")
     
     features_detailed = [
         ("Hardcoded Instant Responses", "Personal questions about DIV-AI get instant answers - no AI processing delay"),
@@ -309,8 +309,8 @@ elif page == "✨ Features":
         """, unsafe_allow_html=True)
 
 # Comparison Page
-elif page == "📊 Comparison":
-    st.markdown("## 📊 DIV-AI vs Competition")
+elif page == "Comparison":
+    st.markdown("## DIV-AI vs Competition")
     
     st.markdown("### See how DIV-AI stacks up against popular AI assistants:")
     
@@ -345,13 +345,13 @@ elif page == "📊 Comparison":
     
     st.markdown("</div>", unsafe_allow_html=True)
     
-    st.markdown("### 🎯 Why DIV-AI Wins:")
+    st.markdown("### Why DIV-AI Wins:")
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
-        **🔒 Unmatched Privacy**
+        **Unmatched Privacy**
         - Zero data collection
         - No cloud processing
         - Complete local control
@@ -359,7 +359,7 @@ elif page == "📊 Comparison":
         """)
         
         st.markdown("""
-        **💰 True Cost Efficiency**
+        **True Cost Efficiency**
         - No monthly subscriptions
         - No usage-based billing
         - One download, lifetime use
@@ -368,7 +368,7 @@ elif page == "📊 Comparison":
     
     with col2:
         st.markdown("""
-        **⚡ Reliable Performance**
+        **Reliable Performance**
         - Always available offline
         - No server downtime issues
         - Consistent response times
@@ -376,7 +376,7 @@ elif page == "📊 Comparison":
         """)
         
         st.markdown("""
-        **🏢 Business Ready**
+        **Business Ready**
         - Safe for sensitive data
         - No external data sharing
         - Compliance-friendly
@@ -384,11 +384,11 @@ elif page == "📊 Comparison":
         """)
 
 # Screenshots Page
-elif page == "💻 Screenshots":
-    st.markdown("## 💻 See DIV-AI in Action")
+elif page == "Screenshots":
+    st.markdown("## See DIV-AI in Action")
     
-    st.markdown("### 🖥️ Clean, Professional Interface")
-    st.info("🎨 **Note**: Screenshots show the actual DIV-AI interface - clean, fast, and user-friendly!")
+    st.markdown("### Clean, Professional Interface")
+    st.info("**Note**: Screenshots show the actual DIV-AI interface - clean, fast, and user-friendly!")
     
     # Placeholder for screenshots (you would replace with actual images)
     col1, col2 = st.columns(2)
@@ -434,7 +434,7 @@ elif page == "💻 Screenshots":
         **No waiting time for personal questions!**
         """)
     
-    st.markdown("### 🎯 Key Interface Features")
+    st.markdown("### Key Interface Features")
     
     features_ui = [
         ("Resource Monitor", "Real-time CPU and RAM usage displayed in header"),
@@ -449,19 +449,19 @@ elif page == "💻 Screenshots":
     for title, desc in features_ui:
         st.markdown(f"""
         <div class="feature-card">
-            <h4>🎨 {title}</h4>
+            <h4>{title}</h4>
             <p>{desc}</p>
         </div>
         """, unsafe_allow_html=True)
 
 # Technical Specs Page
-elif page == "⚙️ Technical Specs":
-    st.markdown("## ⚙️ Technical Specifications")
+elif page == "Technical Specs":
+    st.markdown("## Technical Specifications")
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("### 🔧 System Requirements")
+        st.markdown("### System Requirements")
         st.markdown("""
         **Minimum Requirements:**
         - **OS**: Windows 10/11 (64-bit)
@@ -477,7 +477,7 @@ elif page == "⚙️ Technical Specs":
         - **Cooling**: Adequate CPU cooling for sustained use
         """)
         
-        st.markdown("### 📦 What's Included")
+        st.markdown("### What's Included")
         st.markdown("""
         **Core Components:**
         - `DIVAI.py` - Main application interface
@@ -492,7 +492,7 @@ elif page == "⚙️ Technical Specs":
         """)
     
     with col2:
-        st.markdown("### 🤖 AI Model Details")
+        st.markdown("### AI Model Details")
         st.markdown("""
         **Div_v1_Quant Specifications:**
         - **Parameters**: 2.7 billion
@@ -509,7 +509,7 @@ elif page == "⚙️ Technical Specs":
         - **Process Priority**: Below normal to prevent lag
         """)
         
-        st.markdown("### ⚡ Performance Metrics")
+        st.markdown("### Performance Metrics")
         st.markdown("""
         **Response Times:**
         - Personal questions: Instant (0.1s)
@@ -525,7 +525,7 @@ elif page == "⚙️ Technical Specs":
     
     st.markdown("---")
     
-    st.markdown("### 🔬 Technical Architecture")
+    st.markdown("### Technical Architecture")
     
     architecture_details = [
         ("Frontend", "Python Tkinter GUI with real-time monitoring and responsive design"),
@@ -539,18 +539,18 @@ elif page == "⚙️ Technical Specs":
     for component, description in architecture_details:
         st.markdown(f"""
         <div class="feature-card">
-            <h4>🏗️ {component}</h4>
+            <h4>{component}</h4>
             <p>{description}</p>
         </div>
         """, unsafe_allow_html=True)
 
 # Download Page - Modified to include email collection
-elif page == "📥 Download":
-    st.markdown("## 📥 Download DIV-AI")
+elif page == "Download":
+    st.markdown("## Download DIV-AI")
     
     st.markdown("""
     <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px; margin: 2rem 0;">
-        <h2>🚀 Ready to Experience True AI Privacy?</h2>
+        <h2>Ready to Experience True AI Privacy?</h2>
         <p style="font-size: 1.2em;">Download DIV-AI now and start using AI without compromising your privacy!</p>
     </div>
     """, unsafe_allow_html=True)
@@ -558,15 +558,15 @@ elif page == "📥 Download":
     # Email Collection Form
     st.markdown("""
     <div class="email-form">
-        <h3>📧 Get Your Free Download Link</h3>
+        <h3>Get Your Free Download Link</h3>
         <p>Enter your email to receive the secure download link for DIV-AI</p>
     </div>
     """, unsafe_allow_html=True)
     
     # Email input form
     with st.form("email_form"):
-        email = st.text_input("📧 Your Email Address", placeholder="your.email@example.com")
-        submit_button = st.form_submit_button("🚀 Get Download Link", type="primary", use_container_width=True)
+        email = st.text_input("Your Email Address", placeholder="your.email@example.com")
+        submit_button = st.form_submit_button("Get Download Link", type="primary", use_container_width=True)
         
         if submit_button:
             if not email:
@@ -575,25 +575,25 @@ elif page == "📥 Download":
                 st.error("Please enter a valid email address")
             else:
                 if save_email(email):
-                    st.success("✅ Email saved successfully!")
+                    st.success("Email saved successfully!")
                     download_url = create_download_link()
                     
                     # Display download options
-                    st.markdown("### 🎉 Your Download is Ready!")
+                    st.markdown("### Your Download is Ready!")
                     
                     col1, col2 = st.columns(2)
                     
                     with col1:
                         st.markdown("""
                         <div class="feature-card">
-                            <h4>🎯 Complete Package (Recommended)</h4>
+                            <h4>Complete Package (Recommended)</h4>
                             <p><strong>Size:</strong> 1.65GB</p>
                             <p><strong>Includes:</strong> Full application + AI model</p>
                         </div>
                         """, unsafe_allow_html=True)
                         
                         st.download_button(
-                            label="📥 Download DIV-AI (1.65GB)",
+                            label="Download DIV-AI (1.65GB)",
                             data="This would be your actual file data or use st.link_button for external links",
                             file_name="DIV-AI-v1.0.zip",
                             mime="application/zip",
@@ -603,24 +603,24 @@ elif page == "📥 Download":
                     with col2:
                         st.markdown("""
                         <div class="feature-card">
-                            <h4>💻 Source Code Only</h4>
+                            <h4>Source Code Only</h4>
                             <p><strong>Size:</strong> 50MB</p>
                             <p><strong>Includes:</strong> Python code + docs</p>
                         </div>
                         """, unsafe_allow_html=True)
                         
                         st.download_button(
-                            label="💻 Download Source Code",
+                            label="Download Source Code",
                             data="This would be your source code archive",
                             file_name="DIV-AI-Source.zip",
                             mime="application/zip",
                             use_container_width=True
                         )
                     
-                    st.info("📧 **Download link has been sent to your email!** Check your inbox for the secure download instructions.")
+                    st.info("**Download link has been sent to your email!** Check your inbox for the secure download instructions.")
                     
                     # Installation instructions
-                    st.markdown("### 🔧 Quick Installation")
+                    st.markdown("### Quick Installation")
                     st.markdown("""
                     1. **Extract** the downloaded ZIP file
                     2. **Run** `DIVAI.exe` from the extracted folder
@@ -634,29 +634,29 @@ elif page == "📥 Download":
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.markdown("### 📦 What You Get After Download")
+        st.markdown("### What You Get After Download")
         
         st.markdown("""
         <div class="feature-card">
-            <h4>🎯 Complete AI Assistant</h4>
+            <h4>Complete AI Assistant</h4>
             <p><strong>Full offline AI capabilities</strong></p>
             <p>Professional quality responses without internet dependency</p>
         </div>
         
         <div class="feature-card">
-            <h4>🔒 Privacy Guaranteed</h4>
+            <h4>Privacy Guaranteed</h4>
             <p><strong>Zero data collection</strong></p>
             <p>All processing happens locally on your machine</p>
         </div>
         
         <div class="feature-card">
-            <h4>💰 Lifetime Value</h4>
+            <h4>Lifetime Value</h4>
             <p><strong>No subscription fees</strong></p>
             <p>No usage limits, free updates included</p>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("### 🔧 Installation Instructions")
+        st.markdown("### Installation Instructions")
         st.markdown("""
         1. **Download** the complete package using the form above
         2. **Extract** the archive to your desired location
@@ -668,32 +668,32 @@ elif page == "📥 Download":
         """)
     
     with col2:
-        st.markdown("### ✅ Download Benefits")
+        st.markdown("### Download Benefits")
         st.markdown("""
-        **🎯 Complete AI Assistant**
+        **Complete AI Assistant**
         - Full offline AI capabilities
         - No internet dependency
         - Professional quality responses
         
-        **🔒 Privacy Guaranteed**
+        **Privacy Guaranteed**
         - Zero data collection
         - No cloud processing
         - Complete local control
         
-        **💰 Lifetime Value**
+        **Lifetime Value**
         - No subscription fees
         - No usage limits
         - Free updates included
         
-        **🛠️ Professional Support**
+        **Professional Support**
         - Complete documentation
         - GitHub issue support
         - Active community
         """)
         
-        st.markdown("### 📊 Secure Download")
+        st.markdown("### Secure Download")
         st.markdown("""
-        **🔐 Your Privacy:**
+        **Your Privacy:**
         - Email stored securely (hashed)
         - No spam or marketing emails
         - Used only for download verification
@@ -701,7 +701,7 @@ elif page == "📥 Download":
         """)
     
     st.markdown("---")
-    st.markdown("### 🚨 Important Notes")
+    st.markdown("### Important Notes")
     st.warning("""
     **System Compatibility**: Currently Windows 10/11 (64-bit) only. Linux/macOS versions coming soon!
     
@@ -711,39 +711,39 @@ elif page == "📥 Download":
     """)
 
 # FAQ Page
-elif page == "❓ FAQ":
-    st.markdown("## ❓ Frequently Asked Questions")
+elif page == "FAQ":
+    st.markdown("## Frequently Asked Questions")
     
     faqs = {
-        "🔒 Privacy & Security": [
+        "Privacy & Security": [
             ("Is my data really private?", "Absolutely! DIV-AI runs completely offline. Your conversations never leave your computer, and we don't collect any data whatsoever."),
             ("Can you see my conversations?", "No, we cannot. There's no telemetry, no data transmission, and no tracking. Your privacy is 100% guaranteed."),            
             ("Is it safe for business use?", "Yes! DIV-AI is perfect for businesses with sensitive data since everything stays local and private."),
             ("Does it connect to the internet?", "No internet connection is required or used. DIV-AI works completely offline.")
         ],
         
-        "⚡ Performance & Usage": [
+        "Performance & Usage": [
             ("Why is it slow compared to ChatGPT?", "DIV-AI runs on your local hardware, not powerful cloud servers. The trade-off is complete privacy and no internet dependency."),
             ("How can I make it faster?", "Close other applications, ensure good CPU cooling, ask shorter questions, and consider upgrading your hardware."),
             ("Does it work on older computers?", "Yes, but performance depends on your CPU. 4GB RAM and a multi-core processor are minimum requirements."),
             ("Can I run multiple instances?", "It's not recommended as it would consume significant system resources.")
         ],
         
-        "💰 Pricing & Licensing": [
+        "Pricing & Licensing": [
             ("Is it really free?", "Yes! DIV-AI is completely free to download and use. No subscriptions, no hidden fees, no usage limits."),
             ("Will there be paid versions?", "The core DIV-AI will always remain free. We may offer premium models or features in the future."),
             ("Can I use it commercially?", "Yes, DIV-AI can be used for commercial purposes without additional licensing fees."),
             ("Are there any usage restrictions?", "No usage limits whatsoever. Use it as much as you want, whenever you want.")
         ],
         
-        "🛠️ Technical Support": [
+        "Technical Support": [
             ("What if I encounter bugs?", "Report issues on our GitHub page. We actively monitor and fix bugs reported by users."),
             ("Can I modify the code?", "Yes! The interface code is open source. The AI model and inference engine are proprietary."),
             ("Will you add new features?", "Yes, we regularly update DIV-AI with new features based on user feedback."),
             ("How do I update DIV-AI?", "Updates will be released as new versions. Simply download and replace the old files.")
         ],
         
-        "🔧 Installation & Setup": [
+        "Installation & Setup": [
             ("Why is the download so large?", "The AI model file is ~1.5GB. This is necessary for high-quality offline AI capabilities."),
             ("Do I need Python installed?", "No, the complete package includes everything needed. Python is only required if running from source code."),
             ("Can I move it to another computer?", "Yes! Simply copy the entire DIV-AI folder to any Windows computer."),
@@ -758,21 +758,21 @@ elif page == "❓ FAQ":
                 st.write(answer)
         st.markdown("---")
     
-    st.markdown("### 🤝 Still Have Questions?")
+    st.markdown("### Still Have Questions?")
     st.markdown("""
     **Can't find what you're looking for?**
     
-    - 📧 **Email Support**: [your-email@example.com]
-    - 💬 **GitHub Issues**: [Create an issue](https://github.com/yourusername/div-ai/issues)
-    - 📚 **Documentation**: Check our comprehensive README
-    - 💭 **Community**: Join discussions on GitHub
+    - **Email Support**: [your-email@example.com]
+    - **GitHub Issues**: [Create an issue](https://github.com/yourusername/div-ai/issues)
+    - **Documentation**: Check our comprehensive README
+    - **Community**: Join discussions on GitHub
     
     We typically respond within 24-48 hours!
     """)
 
 # About Creator Page
-elif page == "👨‍💻 About Creator":
-    st.markdown("## 👨‍💻 Meet the Creator")
+elif page == "About Creator":
+    st.markdown("## Meet the Creator")
     
     col1, col2 = st.columns([1, 2])
     
@@ -782,7 +782,6 @@ elif page == "👨‍💻 About Creator":
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
                     height: 300px; border-radius: 15px; display: flex; 
                     align-items: center; justify-content: center; color: white; font-size: 4em;">
-            👨‍💻
         </div>
         """, unsafe_allow_html=True)
     
@@ -794,17 +793,17 @@ elif page == "👨‍💻 About Creator":
         Divyansh is a passionate AI developer and privacy advocate who believes that 
         powerful AI should be accessible to everyone without compromising personal privacy.
         
-        **🎯 Mission**: To democratize AI technology while keeping user privacy intact.
+        **Mission**: To democratize AI technology while keeping user privacy intact.
         
-        **💡 Vision**: A world where everyone can benefit from AI without giving up their data.
+        **Vision**: A world where everyone can benefit from AI without giving up their data.
         """)
         
-        st.markdown("### 🏆 Achievements")
+        st.markdown("### Achievements")
         st.markdown("""
-        - ✅ **Created DIV-AI**: The first truly private offline AI assistant
-        - ✅ **Optimized Div_v1_Quant**: Custom AI model for consumer hardware  
-        - ✅ **Built Privacy-First Tools**: Focus on user data protection
-        - ✅ **Active Open Source Contributor**: Believes in community collaboration
+        - **Created DIV-AI**: The first truly private offline AI assistant
+        - **Optimized Div_v1_Quant**: Custom AI model for consumer hardware  
+        - **Built Privacy-First Tools**: Focus on user data protection
+        - **Active Open Source Contributor**: Believes in community collaboration
         """)
     
     st.markdown("---")
@@ -812,7 +811,7 @@ elif page == "👨‍💻 About Creator":
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("### 🚀 The Story Behind DIV-AI")
+        st.markdown("### The Story Behind DIV-AI")
         st.markdown("""
         **The Problem**: Existing AI assistants require internet connectivity and send all your 
         data to external servers. This creates privacy concerns, especially for sensitive work 
@@ -827,7 +826,7 @@ elif page == "👨‍💻 About Creator":
         """)
     
     with col2:
-        st.markdown("### 💭 Developer Philosophy")
+        st.markdown("### Developer Philosophy")
         st.markdown("""
         **Privacy First**: Your data belongs to you, not to big tech companies.
         
@@ -844,7 +843,7 @@ elif page == "👨‍💻 About Creator":
     
     st.markdown("---")
     
-    st.markdown("### 🌟 What's Next?")
+    st.markdown("### What's Next?")
     
     roadmap_items = [
         ("Multi-Platform Support", "Linux and macOS versions in development"),
@@ -858,20 +857,20 @@ elif page == "👨‍💻 About Creator":
     for title, desc in roadmap_items:
         st.markdown(f"""
         <div class="feature-card">
-            <h4>🚀 {title}</h4>
+            <h4>{title}</h4>
             <p>{desc}</p>
         </div>
         """, unsafe_allow_html=True)
     
-    st.markdown("### 🤝 Connect & Support")
+    st.markdown("### Connect & Support")
     st.markdown("""
     **Want to support DIV-AI development?**
     
-    - ⭐ **Star the project** on GitHub
-    - 🐛 **Report bugs** and suggest features  
-    - 📢 **Share DIV-AI** with friends who value privacy
-    - 💬 **Join the community** discussions
-    - ☕ **Buy me a coffee** (donation links coming soon!)
+    - **Star the project** on GitHub
+    - **Report bugs** and suggest features  
+    - **Share DIV-AI** with friends who value privacy
+    - **Join the community** discussions
+    - **Buy me a coffee** (donation links coming soon!)
     
     Your support helps keep DIV-AI free and continuously improving!
     """)
@@ -880,8 +879,8 @@ elif page == "👨‍💻 About Creator":
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 10px; margin-top: 2rem;">
-    <h3>🤖 DIV-AI - Your Privacy-First AI Assistant</h3>
-    <p>Made with ❤️ by Divyansh Pandit | © 2024 DIV-AI Project</p>
+    <h3>DIV-AI - Your Privacy-First AI Assistant</h3>
+    <p>Made with by Divyansh Pandit | © 2024 DIV-AI Project</p>
     <p>
         <a href="https://github.com/yourusername/div-ai" target="_blank">GitHub</a> | 
         <a href="mailto:your-email@example.com">Contact</a> | 
