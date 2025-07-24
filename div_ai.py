@@ -154,17 +154,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Sidebar Navigation
-st.sidebar.title("DIV-AI Navigation")
-page = st.sidebar.radio("Go to:", [
-    "Home",
-    "Features", 
-    "Comparison",
-    "Screenshots",
-    "Technical Specs",
-    "Download",
-    "FAQ",
-    "About Creator"
-])
 # Add this to your sidebar navigation options
 st.sidebar.title("DIV-AI Navigation")
 page = st.sidebar.radio("Go to:", [
@@ -179,7 +168,17 @@ page = st.sidebar.radio("Go to:", [
     "Admin Panel"  # Add this new option
 ])
 
-# Add this new page section
+
+# Main Header
+st.markdown("""
+<div class="main-header">
+    <h1>DIV-AI</h1>
+    <h2>Your Personal Offline AI Assistant</h2>
+    <p style="font-size: 1.2em; margin-top: 1rem;">
+        Powered by Div_v1_Quant • 100% Private • No Internet Required
+    </p>
+</div>
+""", unsafe_allow_html=True)
 elif page == "Admin Panel":
     # Simple password protection
     admin_password = st.text_input("Enter Admin Password:", type="password")
@@ -256,18 +255,6 @@ elif page == "Admin Panel":
         
     elif admin_password:
         st.error("Incorrect password!")
-
-# Main Header
-st.markdown("""
-<div class="main-header">
-    <h1>DIV-AI</h1>
-    <h2>Your Personal Offline AI Assistant</h2>
-    <p style="font-size: 1.2em; margin-top: 1rem;">
-        Powered by Div_v1_Quant • 100% Private • No Internet Required
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
 # Home Page
 if page == "Home":
     col1, col2 = st.columns([2, 1])
