@@ -546,6 +546,7 @@ elif page == "Technical Specs":
         """, unsafe_allow_html=True)
 
 # Download Page - Modified to include email collection
+# Download Page - Fixed version
 elif page == "Download":
     st.markdown("## Download DIV-AI")
     
@@ -564,7 +565,11 @@ elif page == "Download":
     </div>
     """, unsafe_allow_html=True)
     
-    # Email input form
+    # Initialize session state
+    if 'email_verified' not in st.session_state:
+        st.session_state.email_verified = False
+    
+    # Email input form (ONLY email collection here)
     with st.form("email_form"):
         email = st.text_input("Your Email Address", placeholder="your.email@example.com")
         submit_button = st.form_submit_button("Get Download Link", type="primary", use_container_width=True)
@@ -577,139 +582,66 @@ elif page == "Download":
             else:
                 if save_email(email):
                     st.success("Email saved successfully!")
-                    download_url = create_download_link()
-                    
-                    # Display download options
-                    st.markdown("### Your Download is Ready!")
-                    
-                    col1, col2 = st.columns(2)
-                    
-                    with col1:
-                        st.markdown("""
-                        <div class="feature-card">
-                            <h4>Complete Package (Recommended)</h4>
-                            <p><strong>Size:</strong> 1.65GB</p>
-                            <p><strong>Includes:</strong> Full application + AI model</p>
-                        </div>
-                        """, unsafe_allow_html=True)
-                        
-                        st.download_button(
-                            label="Download DIV-AI (1.65GB)",
-                            data="This would be your actual file data or use st.link_button for external links",
-                            file_name="DIV-AI-v1.0.zip",
-                            mime="application/zip",
-                            use_container_width=True
-                        )
-                    
-                    with col2:
-                        st.markdown("""
-                        <div class="feature-card">
-                            <h4>Source Code Only</h4>
-                            <p><strong>Size:</strong> 50MB</p>
-                            <p><strong>Includes:</strong> Python code + docs</p>
-                        </div>
-                        """, unsafe_allow_html=True)
-                        
-                        st.download_button(
-                            label="Download Source Code",
-                            data="This would be your source code archive",
-                            file_name="DIV-AI-Source.zip",
-                            mime="application/zip",
-                            use_container_width=True
-                        )
-                    
-                    st.info("**Download link has been sent to your email!** Check your inbox for the secure download instructions.")
-                    
-                    # Installation instructions
-                    st.markdown("### Quick Installation")
-                    st.markdown("""
-                    1. **Extract** the downloaded ZIP file
-                    2. **Run** `DIVAI.exe` from the extracted folder
-                    3. **Click "Check Files"** to verify installation
-                    4. **Start chatting** with your private AI!
-                    """)
-                    
+                    st.session_state.email_verified = True
+                    st.session_state.user_email = email
                 else:
                     st.error("Failed to process your request. Please try again.")
     
-    col1, col2 = st.columns([2, 1])
-    
-    with col1:
-        st.markdown("### What You Get After Download")
+    # Download buttons OUTSIDE the form (only show after email verification)
+    if st.session_state.email_verified:
+        st.markdown("### Your Download is Ready!")
         
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("""
+            <div class="feature-card">
+                <h4>Complete Package (Recommended)</h4>
+                <p><strong>Size:</strong> 1.65GB</p>
+                <p><strong>Includes:</strong> Full application + AI model</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # ✅ NOW OUTSIDE THE FORM - THIS WORKS
+            st.download_button(
+                label="Download DIV-AI (1.65GB)",
+                data="This would be your actual file data or use st.link_button for external links",
+                file_name="DIV-AI-v1.0.zip",
+                mime="application/zip",
+                use_container_width=True
+            )
+        
+        with col2:
+            st.markdown("""
+            <div class="feature-card">
+                <h4>Source Code Only</h4>
+                <p><strong>Size:</strong> 50MB</p>
+                <p><strong>Includes:</strong> Python code + docs</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # ✅ ALSO OUTSIDE THE FORM
+            st.download_button(
+                label="Download Source Code",
+                data="This would be your source code archive",
+                file_name="DIV-AI-Source.zip",
+                mime="application/zip",
+                use_container_width=True
+            )
+        
+        st.info("**Download link has been sent to your email!** Check your inbox for the secure download instructions.")
+        
+        # Installation instructions
+        st.markdown("### Quick Installation")
         st.markdown("""
-        <div class="feature-card">
-            <h4>Complete AI Assistant</h4>
-            <p><strong>Full offline AI capabilities</strong></p>
-            <p>Professional quality responses without internet dependency</p>
-        </div>
-        
-        <div class="feature-card">
-            <h4>Privacy Guaranteed</h4>
-            <p><strong>Zero data collection</strong></p>
-            <p>All processing happens locally on your machine</p>
-        </div>
-        
-        <div class="feature-card">
-            <h4>Lifetime Value</h4>
-            <p><strong>No subscription fees</strong></p>
-            <p>No usage limits, free updates included</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown("### Installation Instructions")
-        st.markdown("""
-        1. **Download** the complete package using the form above
-        2. **Extract** the archive to your desired location
-        3. **Run** `DIVAI.exe` (or `python DIVAI.py` for source)
-        4. **Click "Check Files"** to verify installation
-        5. **Start asking questions!**
-        
-        **No additional setup required!** DIV-AI works immediately after extraction.
+        1. **Extract** the downloaded ZIP file
+        2. **Run** `DIVAI.exe` from the extracted folder
+        3. **Click "Check Files"** to verify installation
+        4. **Start chatting** with your private AI!
         """)
     
-    with col2:
-        st.markdown("### Download Benefits")
-        st.markdown("""
-        **Complete AI Assistant**
-        - Full offline AI capabilities
-        - No internet dependency
-        - Professional quality responses
-        
-        **Privacy Guaranteed**
-        - Zero data collection
-        - No cloud processing
-        - Complete local control
-        
-        **Lifetime Value**
-        - No subscription fees
-        - No usage limits
-        - Free updates included
-        
-        **Professional Support**
-        - Complete documentation
-        - GitHub issue support
-        - Active community
-        """)
-        
-        st.markdown("### Secure Download")
-        st.markdown("""
-        **Your Privacy:**
-        - Email stored securely (hashed)
-        - No spam or marketing emails
-        - Used only for download verification
-        - Can be deleted anytime
-        """)
-    
-    st.markdown("---")
-    st.markdown("### Important Notes")
-    st.warning("""
-    **System Compatibility**: Currently Windows 10/11 (64-bit) only. Linux/macOS versions coming soon!
-    
-    **First Run**: Initial model loading may take 30-60 seconds. Subsequent starts are much faster.
-    
-    **Antivirus**: Some antivirus software may flag the executable as unknown. This is normal for new software.
-    """)
+    # Rest of your download page code continues...
+
 
 # FAQ Page
 elif page == "FAQ":
