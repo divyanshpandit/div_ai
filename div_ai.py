@@ -558,41 +558,9 @@ elif page == "Download":
         <h2>Ready to Experience True AI Privacy?</h2>
         <p style="font-size: 1.2em;">Download DIV-AI now and start using AI without compromising your privacy!</p>
     </div>
-    """, unsafe_allow_html=True)
-    
-    # Email Collection Form
-    st.markdown("""
-    <div class="email-form">
-        <h3>Get Your Free Download Link</h3>
-        <p>Enter your email to receive the secure download link for DIV-AI</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Initialize session state
-    if 'email_verified' not in st.session_state:
-        st.session_state.email_verified = False
-    
-    # Email input form
-    with st.form("email_form"):
-        email = st.text_input("Your Email Address", placeholder="your.email@example.com")
-        submit_button = st.form_submit_button("Get Download Link", type="primary", use_container_width=True)
-        
-        if submit_button:
-            if not email:
-                st.error("Please enter your email address")
-            elif not validate_email(email):
-                st.error("Please enter a valid email address")
-            else:
-                if save_email(email):
-                    st.success("Email saved successfully!")
-                    st.session_state.email_verified = True
-                    st.session_state.user_email = email
-                else:
-                    st.error("Failed to process your request. Please try again.")
+    """, unsafe_allow_html=True)   
     
     # Download link OUTSIDE the form (only show after email verification)
-    if st.session_state.email_verified:
-        st.markdown("### Your Download is Ready!")
         
         # Your Google Drive download link
         st.markdown("""
