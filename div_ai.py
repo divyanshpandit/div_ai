@@ -6,6 +6,14 @@ import hashlib
 import re
 from datetime import datetime
 import os
+# Try to load environment variables
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    st.warning("python-dotenv not installed. Using environment variables directly.")
+
+# Add database setup and email functions at the top
 def migrate_database():
     """Migrate existing database to support both email and email_hash columns"""
     try:
@@ -17,13 +25,10 @@ def migrate_database():
         columns = [column[1] for column in cursor.fetchall()]
         
         if 'email' not in columns:
-            st.info("🔄 Migrating database schema...")
-            
             # Add email column to existing table
             cursor.execute('ALTER TABLE user_emails ADD COLUMN email TEXT')
             
-            # For existing records, we can't recover the original emails from hashes
-            # So we'll mark them as 'legacy_user@unknown.com' or similar
+            # For existing records, mark as legacy since we can't reverse the hash
             cursor.execute('''
                 UPDATE user_emails 
                 SET email = 'legacy_user_' || id || '@unknown.com' 
@@ -31,24 +36,12 @@ def migrate_database():
             ''')
             
             conn.commit()
-            st.success("✅ Database migration completed!")
         
         conn.close()
         
     except Exception as e:
         st.error(f"Migration error: {e}")
 
-# Add this line right after your imports and before init_database()
-migrate_database()
-
-# Try to load environment variables
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    st.warning("python-dotenv not installed. Using environment variables directly.")
-
-# Add database setup and email functions at the top
 def init_database():
     """Initialize SQLite database for email storage"""
     conn = sqlite3.connect('div_ai_emails.db')
@@ -64,6 +57,10 @@ def init_database():
     ''')
     conn.commit()
     conn.close()
+
+# Call migration before initialization
+migrate_database()
+init_database()
 
 def hash_email(email):
     """Hash email for secure storage"""
