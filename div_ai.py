@@ -83,7 +83,7 @@ st.markdown("""
     .main-header {
         text-align: center;
         padding: 2rem 0;
-        background: linear-gradient(135deg, #a1ffce 0%, #faffd1 100%);
+        background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
         color: white;
         border-radius: 10px;
         margin-bottom: 2rem;
