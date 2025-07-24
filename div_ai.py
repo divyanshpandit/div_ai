@@ -183,7 +183,7 @@ if page == "Home":
     
     with col1:
         st.markdown("## Complete Privacy. Unlimited Power.")
-        st.markdown("## frontend is genrated by ai bcoz i was too lazy to write whole code just to give you a download button. if you want to see my front end capabilities you can go on my github and check repository ")
+        st.markdown("## NOTE : frontend is genrated by ai bcoz i was too lazy to write whole code just to give you a download button. if you want to see my front end capabilities you can go on my github and check repository ")
         st.markdown("""
         **DIV-AI** is revolutionary offline AI assistant that runs entirely on your local machine. 
         No internet connection required, no data leaves your computer, no subscriptions needed.
