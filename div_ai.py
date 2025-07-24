@@ -14,6 +14,7 @@ except ImportError:
     pass
 
 # Simple database functions - no hashing
+# Simple database functions - no hashing, just plain text
 def init_database():
     """Initialize SQLite database for email storage"""
     conn = sqlite3.connect('div_ai_emails.db')
@@ -35,7 +36,7 @@ def validate_email(email):
     return re.match(pattern, email) is not None
 
 def save_email(email):
-    """Save email to database"""
+    """Save email to database - SIMPLE VERSION"""
     try:
         conn = sqlite3.connect('div_ai_emails.db')
         cursor = conn.cursor()
@@ -58,6 +59,7 @@ def save_email(email):
     except Exception as e:
         st.error(f"Error saving email: {e}")
         return False
+
 
 def create_download_link():
     """Create secure download link"""
