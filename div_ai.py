@@ -183,6 +183,7 @@ if page == "Home":
     
     with col1:
         st.markdown("## Complete Privacy. Unlimited Power.")
+        st.markdown("## frontend is genrated by ai bcoz i was too lazy to write whole code just to give you a download button. if you want to see my front end capabilities you can go on my github and check repository ")
         st.markdown("""
         **DIV-AI** is revolutionary offline AI assistant that runs entirely on your local machine. 
         No internet connection required, no data leaves your computer, no subscriptions needed.
@@ -778,12 +779,8 @@ elif page == "About Creator":
     
     with col1:
         # Placeholder for creator photo
-        st.markdown("""
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                    height: 300px; border-radius: 15px; display: flex; 
-                    align-items: center; justify-content: center; color: white; font-size: 4em;">
-        </div>
-        """, unsafe_allow_html=True)
+        st.image("path/to/your_photo.jpg", width=300, caption="Divyansh Pandit")
+
     
     with col2:
         st.markdown("### Divyansh Pandit")
@@ -880,10 +877,10 @@ st.markdown("---")
 st.markdown("""
 <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 10px; margin-top: 2rem;">
     <h3>DIV-AI - Your Privacy-First AI Assistant</h3>
-    <p>Made with by Divyansh Pandit | © 2024 DIV-AI Project</p>
+    <p>Made with by Divyansh Pandit | © 2025 DIV-AI Project</p>
     <p>
-        <a href="https://github.com/yourusername/div-ai" target="_blank">GitHub</a> | 
-        <a href="mailto:your-email@example.com">Contact</a> | 
+        <a href="https://github.com/divyanshpandit/" target="_blank">GitHub</a> | 
+        <a href="mailto:divyanshpandiit@gmail.com">Contact</a> | 
         <a href="#" onclick="window.scrollTo(0,0)">Back to Top</a>
     </p>
 </div>
