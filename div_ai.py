@@ -179,6 +179,75 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
+# Home Page
+if page == "Home":
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        st.markdown("## Complete Privacy. Unlimited Power.")
+        st.markdown("NOTE : frontend is genrated by ai bcoz i was too lazy to write whole code just to give you a download button. if you want to see my front end capabilities you can go on my github and check repository ")
+        st.markdown("""
+        **DIV-AI** is revolutionary offline AI assistant that runs entirely on your local machine. 
+        No internet connection required, no data leaves your computer, no subscriptions needed.
+        
+        ### Why Choose DIV-AI?
+        """)
+        
+        st.markdown("""
+        <div class="feature-card">
+            <h4>100% Private & Secure</h4>
+            <p>All processing happens locally. Your conversations never leave your computer.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>Lightning Fast Responses</h4>
+            <p>Instant answers to personal questions, optimized AI responses for complex queries.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>No Subscriptions Ever</h4>
+            <p>One-time download, lifetime usage. No monthly fees, no usage limits.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>Works Offline Always</h4>
+            <p>Perfect for secure environments, remote areas, or when you want guaranteed uptime.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("### Quick Stats")
+        st.markdown("""
+        <div class="stat-box">
+            <h3>2.7B</h3>
+            <p>Parameters</p>
+        </div>
+        
+        <div class="stat-box">
+            <h3>1.65GB</h3>
+            <p>Download Size</p>
+        </div>
+        
+        <div class="stat-box">
+            <h3>4GB RAM</h3>
+            <p>Minimum Required</p>
+        </div>
+        
+        <div class="stat-box">
+            <h3>0%</h3>
+            <p>Data Collection</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("### Perfect For:")
+        st.markdown("""
+        - **Privacy-conscious users**
+        - **Businesses with sensitive data**
+        - **Students and researchers**
+        - **Remote workers**
+        - **Anyone wanting AI without internet**
+        """)
 elif page == "Admin Panel":
     # Simple password protection
     admin_password = st.text_input("Enter Admin Password:", type="password")
@@ -255,75 +324,6 @@ elif page == "Admin Panel":
         
     elif admin_password:
         st.error("Incorrect password!")
-# Home Page
-if page == "Home":
-    col1, col2 = st.columns([2, 1])
-    
-    with col1:
-        st.markdown("## Complete Privacy. Unlimited Power.")
-        st.markdown("NOTE : frontend is genrated by ai bcoz i was too lazy to write whole code just to give you a download button. if you want to see my front end capabilities you can go on my github and check repository ")
-        st.markdown("""
-        **DIV-AI** is revolutionary offline AI assistant that runs entirely on your local machine. 
-        No internet connection required, no data leaves your computer, no subscriptions needed.
-        
-        ### Why Choose DIV-AI?
-        """)
-        
-        st.markdown("""
-        <div class="feature-card">
-            <h4>100% Private & Secure</h4>
-            <p>All processing happens locally. Your conversations never leave your computer.</p>
-        </div>
-        
-        <div class="feature-card">
-            <h4>Lightning Fast Responses</h4>
-            <p>Instant answers to personal questions, optimized AI responses for complex queries.</p>
-        </div>
-        
-        <div class="feature-card">
-            <h4>No Subscriptions Ever</h4>
-            <p>One-time download, lifetime usage. No monthly fees, no usage limits.</p>
-        </div>
-        
-        <div class="feature-card">
-            <h4>Works Offline Always</h4>
-            <p>Perfect for secure environments, remote areas, or when you want guaranteed uptime.</p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col2:
-        st.markdown("### Quick Stats")
-        st.markdown("""
-        <div class="stat-box">
-            <h3>2.7B</h3>
-            <p>Parameters</p>
-        </div>
-        
-        <div class="stat-box">
-            <h3>1.65GB</h3>
-            <p>Download Size</p>
-        </div>
-        
-        <div class="stat-box">
-            <h3>4GB RAM</h3>
-            <p>Minimum Required</p>
-        </div>
-        
-        <div class="stat-box">
-            <h3>0%</h3>
-            <p>Data Collection</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown("### Perfect For:")
-        st.markdown("""
-        - **Privacy-conscious users**
-        - **Businesses with sensitive data**
-        - **Students and researchers**
-        - **Remote workers**
-        - **Anyone wanting AI without internet**
-        """)
-
 # Features Page
 elif page == "Features":
     st.markdown("## Powerful Features")
