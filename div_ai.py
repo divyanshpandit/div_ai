@@ -5,7 +5,12 @@ import sqlite3
 import hashlib
 import re
 from datetime import datetime
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+
+#
 # Add database setup and email functions at the top
 def init_database():
     """Initialize SQLite database for email storage"""
@@ -251,8 +256,10 @@ if page == "Home":
 elif page == "Admin Panel":
     # Simple password protection
     admin_password = st.text_input("Enter Admin Password:", type="password")
-    
-    if admin_password == "your_admin_password_here":  # Replace with your actual password
+    admin_password_correct = os.getenv('ADMIN_PASSWORD', 'fallback_password')
+
+
+    if admin_password == admin_password_correct:  # Replace with your actual password
         st.markdown("## Admin Dashboard")
         
         # Function to get email statistics
