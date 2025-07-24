@@ -577,7 +577,7 @@ elif page == "Download":
         </div>
         """, unsafe_allow_html=True)
         
-        st.info("**Download link is now available!** Click the button above to download from Google Drive.")
+    st.info("**Download link is now available!** Click the button above to download from Google Drive.")
         
         # Installation instructions
         st.markdown("### Quick Installation")
