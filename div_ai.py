@@ -6,9 +6,13 @@ import hashlib
 import re
 from datetime import datetime
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
+# Try to load environment variables
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    st.warning("python-dotenv not installed. Using environment variables directly.")
 
 # Add database setup and email functions at the top
 def init_database():
@@ -73,7 +77,7 @@ init_database()
 # Page config
 st.set_page_config(
     page_title="DIV-AI - Your Personal Offline AI Assistant",
-    page_icon="",
+    page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -774,8 +778,16 @@ elif page == "About Creator":
     col1, col2 = st.columns([1, 2])
     
     with col1:
-        # Your actual photo using Streamlit's built-in function
-        st.image("path/to/your_photo.jpg", width=300, caption="Divyansh Pandit")
+        try:
+            st.image("path/to/your_photo.jpg", width=300, caption="Divyansh Pandit")
+        except:
+            st.markdown("""
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                        height: 300px; border-radius: 15px; display: flex; 
+                        align-items: center; justify-content: center; color: white; font-size: 3em;">
+                👨‍💻
+            </div>
+            """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("### Divyansh Pandit")
@@ -877,7 +889,7 @@ elif page == "Admin Panel":
         st.stop()
 
     if admin_password == admin_password_correct:
-        st.markdown("## Admin Dashboard")
+        st.markdown("## 🔧 Admin Dashboard")
         
         # Function to get email statistics and data
         def get_email_stats_and_data():
@@ -915,7 +927,7 @@ elif page == "Admin Panel":
             st.metric("Avg Downloads per User", round(total_downloads/total_emails, 2) if total_emails > 0 else 0)
         
         # Email verification tool
-        st.markdown("### Email Verification Tool")
+        st.markdown("### 🔍 Email Verification Tool")
         st.info("Enter an email address to check if it's in your database")
         
         test_email = st.text_input("Enter email to check:", placeholder="user@example.com")
@@ -935,7 +947,7 @@ elif page == "Admin Panel":
                 st.warning(f"❌ Email '{test_email}' not found in database")
         
         # Display all email data
-        st.markdown("### Email Database")
+        st.markdown("### 📋 Email Database")
         if all_emails:
             import pandas as pd
             
@@ -957,14 +969,14 @@ elif page == "Admin Panel":
             st.dataframe(display_df, use_container_width=True)
             
             # Export functionality
-            st.markdown("### Export Data")
+            st.markdown("### 📥 Export Data")
             col1, col2 = st.columns(2)
             
             with col1:
                 # CSV Export
                 csv_data = df.to_csv(index=False)
                 st.download_button(
-                    label="Download as CSV",
+                    label="📄 Download as CSV",
                     data=csv_data,
                     file_name=f"div_ai_emails_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
                     mime="text/csv"
@@ -974,14 +986,14 @@ elif page == "Admin Panel":
                 # JSON Export
                 json_data = df.to_json(orient='records', indent=2)
                 st.download_button(
-                    label="Download as JSON",
+                    label="📄 Download as JSON",
                     data=json_data,
                     file_name=f"div_ai_emails_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
                     mime="application/json"
                 )
             
             # Bulk email verification
-            st.markdown("### Bulk Email Verification")
+            st.markdown("### 📧 Bulk Email Verification")
             st.info("Upload a list of emails to check which ones are in your database")
             
             bulk_emails = st.text_area(
@@ -1016,7 +1028,7 @@ elif page == "Admin Panel":
                 st.write(f"**Summary:** {found_count}/{len(results)} emails found in database")
             
             # Email domain analysis
-            st.markdown("### Email Domain Analysis")
+            st.markdown("### 📊 Email Domain Analysis")
             domains = {}
             for record in all_emails:
                 email = record[1]
@@ -1039,7 +1051,7 @@ st.markdown("---")
 st.markdown("""
 <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 10px; margin-top: 2rem;">
     <h3>DIV-AI - Your Privacy-First AI Assistant</h3>
-    <p>Made with by Divyansh Pandit | © 2025 DIV-AI Project</p>
+    <p>Made with ❤️ by Divyansh Pandit | © 2025 DIV-AI Project</p>
     <p>
         <a href="https://github.com/divyanshpandit/" target="_blank">GitHub</a> | 
         <a href="mailto:divyanshpandiit@gmail.com">Contact</a> | 
