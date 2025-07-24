@@ -165,6 +165,97 @@ page = st.sidebar.radio("Go to:", [
     "FAQ",
     "About Creator"
 ])
+# Add this to your sidebar navigation options
+st.sidebar.title("DIV-AI Navigation")
+page = st.sidebar.radio("Go to:", [
+    "Home",
+    "Features", 
+    "Comparison",
+    "Screenshots",
+    "Technical Specs",
+    "Download",
+    "FAQ",
+    "About Creator",
+    "Admin Panel"  # Add this new option
+])
+
+# Add this new page section
+elif page == "Admin Panel":
+    # Simple password protection
+    admin_password = st.text_input("Enter Admin Password:", type="password")
+    
+    if admin_password == "your_admin_password_here":  # Replace with your actual password
+        st.markdown("## Admin Dashboard")
+        
+        # Function to get email statistics
+        def get_email_stats():
+            try:
+                conn = sqlite3.connect('div_ai_emails.db')
+                cursor = conn.cursor()
+                
+                # Get total emails
+                cursor.execute('SELECT COUNT(*) FROM user_emails')
+                total_emails = cursor.fetchone()[0]
+                
+                # Get total downloads
+                cursor.execute('SELECT SUM(download_count) FROM user_emails')
+                total_downloads = cursor.fetchone()[0] or 0
+                
+                # Get recent emails (last 10)
+                cursor.execute('SELECT email_hash, timestamp, download_count FROM user_emails ORDER BY timestamp DESC LIMIT 10')
+                recent_emails = cursor.fetchall()
+                
+                # Get all emails for export
+                cursor.execute('SELECT * FROM user_emails ORDER BY timestamp DESC')
+                all_emails = cursor.fetchall()
+                
+                conn.close()
+                return total_emails, total_downloads, recent_emails, all_emails
+            except Exception as e:
+                st.error(f"Database error: {e}")
+                return 0, 0, [], []
+        
+        total_emails, total_downloads, recent_emails, all_emails = get_email_stats()
+        
+        # Display statistics
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Total Emails Collected", total_emails)
+        with col2:
+            st.metric("Total Downloads", total_downloads)
+        with col3:
+            st.metric("Avg Downloads per User", round(total_downloads/total_emails, 2) if total_emails > 0 else 0)
+        
+        # Recent activity
+        st.markdown("### Recent Email Submissions")
+        if recent_emails:
+            import pandas as pd
+            df_recent = pd.DataFrame(recent_emails, columns=['Email Hash', 'Timestamp', 'Download Count'])
+            st.dataframe(df_recent, use_container_width=True)
+        else:
+            st.info("No emails collected yet.")
+        
+        # Export functionality
+        st.markdown("### Export Data")
+        if all_emails:
+            import pandas as pd
+            df_all = pd.DataFrame(all_emails, columns=['ID', 'Email Hash', 'Timestamp', 'Download Count'])
+            
+            # Convert to CSV
+            csv_data = df_all.to_csv(index=False)
+            st.download_button(
+                label="Download Email Data (CSV)",
+                data=csv_data,
+                file_name=f"div_ai_emails_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+                mime="text/csv"
+            )
+            
+            # Show full table
+            st.markdown("### All Collected Emails")
+            st.dataframe(df_all, use_container_width=True)
+        
+    elif admin_password:
+        st.error("Incorrect password!")
 
 # Main Header
 st.markdown("""
