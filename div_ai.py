@@ -561,9 +561,7 @@ elif page == "Download":
     """, unsafe_allow_html=True)   
     
     # Download link OUTSIDE the form (only show after email verification)
-        
-        # Your Google Drive download link
-        st.markdown("""
+    st.markdown("""
         <div class="feature-card" style="text-align: center;">
             <h4>DIV-AI Complete Package</h4>
             <p><strong>Size:</strong> 1.65GB</p>
@@ -672,7 +670,9 @@ elif page == "Download":
     **First Run**: Initial model loading may take 30-60 seconds. Subsequent starts are much faster.
     
     **Antivirus**: Some antivirus software may flag the executable as unknown. This is normal for new software.
-    """)
+    """)    
+        # Your Google Drive download link
+        
 
 # FAQ Page
 elif page == "FAQ":
