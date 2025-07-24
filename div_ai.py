@@ -6,6 +6,40 @@ import hashlib
 import re
 from datetime import datetime
 import os
+def migrate_database():
+    """Migrate existing database to support both email and email_hash columns"""
+    try:
+        conn = sqlite3.connect('div_ai_emails.db')
+        cursor = conn.cursor()
+        
+        # Check if email column exists
+        cursor.execute("PRAGMA table_info(user_emails)")
+        columns = [column[1] for column in cursor.fetchall()]
+        
+        if 'email' not in columns:
+            st.info("🔄 Migrating database schema...")
+            
+            # Add email column to existing table
+            cursor.execute('ALTER TABLE user_emails ADD COLUMN email TEXT')
+            
+            # For existing records, we can't recover the original emails from hashes
+            # So we'll mark them as 'legacy_user@unknown.com' or similar
+            cursor.execute('''
+                UPDATE user_emails 
+                SET email = 'legacy_user_' || id || '@unknown.com' 
+                WHERE email IS NULL
+            ''')
+            
+            conn.commit()
+            st.success("✅ Database migration completed!")
+        
+        conn.close()
+        
+    except Exception as e:
+        st.error(f"Migration error: {e}")
+
+# Add this line right after your imports and before init_database()
+migrate_database()
 
 # Try to load environment variables
 try:
